@@ -1,0 +1,132 @@
+/* ===== ESTILOS PARA FORMULARIOS EN TEMA OSCURO ===== */
+
+/* Labels */
+.main-content .form-label {
+    color: #e4e6eb;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+/* Inputs y TextArea */
+.main-content .form-control-dark {
+    background-color: #1a1d23;
+    border: 1px solid #3a3f4b;
+    color: #e4e6eb;
+    font-family: 'Roboto', sans-serif;
+    padding: 0.6rem 0.75rem;
+    transition: all 0.3s ease;
+}
+
+.main-content .form-control-dark:focus {
+    background-color: #242831;
+    border-color: #0d6efd;
+    color: #ffffff;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    outline: 0;
+}
+
+.main-content .form-control-dark::placeholder {
+    color: #6c757d;
+}
+
+.main-content .form-control-dark:hover {
+    border-color: #4a4f5b;
+}
+
+/* Textarea específico */
+.main-content textarea.form-control-dark {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Card body para formularios */
+.main-content .card-body {
+    background-color: #242831;
+}
+
+/* Botones en formularios */
+.main-content .btn {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.375rem;
+    transition: all 0.3s ease;
+}
+
+.main-content .btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.main-content .btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(13, 110, 253, 0.3);
+}
+
+.main-content .btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: #ffffff;
+}
+
+.main-content .btn-secondary:hover {
+    background-color: #5c636a;
+    border-color: #565e64;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
+}
+
+/* Gap para botones */
+.gap-2 {
+    gap: 0.5rem;
+}
+
+/* Validación de errores */
+.main-content .form-control-dark.is-invalid {
+    border-color: #dc3545;
+}
+
+.main-content .form-control-dark.is-invalid:focus {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+}
+
+.main-content .invalid-feedback {
+    color: #ea868f;
+    font-size: 0.875rem;
+}
+
+/* Validación de éxito */
+.main-content .form-control-dark.is-valid {
+    border-color: #198754;
+}
+
+.main-content .form-control-dark.is-valid:focus {
+    border-color: #198754;
+    box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
+}
+
+.main-content .valid-feedback {
+    color: #75b798;
+    font-size: 0.875rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main-content .card-body {
+        padding: 1.5rem !important;
+    }
+    
+    .main-content .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .main-content .d-flex.gap-2 {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,138 @@
+<?php 
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/Gesti-ndeCitas-BuffeteLegal/Controller/InicioController.php';
+
+    if(session_status() == PHP_SESSION_NONE)
+    {
+        session_start();
+    }
+
+    if(!isset($_SESSION["nombreCompleto"]))
+    {
+      header("Location: ../../View/Principal/Home.php");
+      exit;
+    }
+
+    function VerCss()
+    {
+        echo
+        '
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+                <title>Sistema Legal</title>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+                <link rel="stylesheet" href="../css/estilosPrincipales.css">
+                <link rel="stylesheet" href="../css/estilosClientes.css">
+                <link rel="stylesheet" href="../css/estilosRegistroCliente.css">
+            </head>
+        ';
+    }
+
+    function VerSidebar()
+    {
+        $nombreCompleto = "";
+        if(isset($_SESSION["nombreCompleto"]))
+        {
+            $nombreCompleto = $_SESSION["nombreCompleto"];
+        }
+        echo
+        '
+                <div class="sidebar d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" id="sidebar">
+                    <a href="../Principal/Home.php"
+                        class="d-flex justify-content-center align-items-center mb-3 mb-md-0 text-white text-decoration-none">
+                        <i class="fa-solid fa-scale-balanced sidebar-logo"></i>
+                    </a>
+                    <hr>
+                    <div class="user-profile-sidebar">
+                        <div class="profile-image-container">
+                            <img src="https://github.com/mdo.png" alt="Perfil" class="profile-image">
+                        </div>
+                        <div class="profile-info">
+                            <h6 class="profile-name">'.$nombreCompleto.'</h6>
+                            <small class="profile-role">Administrador</small>
+                        </div>
+                    </div>
+                    <hr>
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li>
+                            <a href="../Administrativo/Dashboard.php" class="nav-link text-white">
+                                <i class="fa-solid fa-gauge me-2"></i>
+                                <span class="menu-text">Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="../Clientes/ListadoClientes.php" class="nav-link text-white">
+                                <i class="fa-solid fa-users me-2"></i>
+                                <span class="menu-text">Clientes</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link text-white">
+                                <i class="fa-solid fa-box me-2"></i>
+                                <span class="menu-text">Expedientes</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link text-white">
+                                <i class="fa-solid fa-calendar me-2"></i>
+                                <span class="menu-text">Calendario</span>
+                            </a>
+                        </li>   
+                    </ul>
+                </div>
+        ';
+    }
+
+    function VerNavbar()
+    {
+        $nombreCompleto = "";
+        if(isset($_SESSION["nombreCompleto"]))
+        {
+            $nombreCompleto = $_SESSION["nombreCompleto"];
+        }
+        echo
+        '
+            <div class="content-section">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark top-navbar">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center">
+                            <button class="btn-toggle-sidebar" id="toggleSidebar" type="button">
+                                <i class="fa-solid fa-bars"></i>
+                            </button>
+                        </div>
+                        <div class="dropdown ms-auto">
+                            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle navbar-profile"
+                                id="dropdownUserNavbar" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="https://github.com/mdo.png" alt="" class="navbar-profile-img">
+                                <span class="navbar-username d-none d-lg-inline">'.$nombreCompleto.'</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end text-small shadow" aria-labelledby="dropdownUserNavbar">
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user me-2"></i>Mi Perfil</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gear me-2"></i>Configuración</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-key me-2"></i>Cambiar Contraseña</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-right-from-bracket me-2"></i>Cerrar Sesión</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+        ';
+    }
+
+    function Cerrar()
+    {
+        echo '</div>';
+    }
+
+    function VerJs()
+    {
+        echo
+        '
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+            <script src="../js/Sidebar.js"></script>
+        ';
+    }
+?>

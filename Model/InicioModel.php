@@ -6,7 +6,7 @@
         try
         {
             $context = OpenConnection();
-            $sentencia = "CALL RegistrarUsuario('$cedula', '$nombreCompleto', '$correoElectronico', '$hash')";
+            $sentencia = "CALL RegistrarUsuario('$cedula', '$nombreCompleto', '$correoElectronico', '$contrasenna')";
             $resultado = $context -> query($sentencia);
             CloseConnection($context);
             return $resultado;

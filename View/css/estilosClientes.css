@@ -1,0 +1,137 @@
+/* ===== IMPORTAR FUENTE GOOGLE FONTS ===== */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* ===== TÍTULOS Y TEXTOS GENERALES ===== */
+.main-content h1,
+.main-content h2,
+.main-content h3,
+.main-content h4,
+.main-content h5,
+.main-content h6 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+}
+
+/* ===== ESTILOS PARA TABLAS EN MAIN CONTENT ===== */
+
+/* Tabla base */
+.main-content .table {
+    background-color: transparent !important;
+    color: #e4e6eb;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 0;
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 0.95rem;
+}
+
+/* Header de la tabla */
+.main-content .table thead {
+    background-color: #0d6efd;
+}
+
+.main-content .table thead th {
+    color: #ffffff;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.8px;
+    padding: 15px;
+    border: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Filas del body */
+.main-content .table tbody tr {
+    background-color: transparent;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid #2d3139;
+}
+
+.main-content .table tbody tr:hover {
+    background-color: rgba(13, 110, 253, 0.1);
+    transform: translateX(3px);
+}
+
+.main-content .table tbody tr:last-child {
+    border-bottom: none;
+}
+
+/* Celdas del body */
+.main-content .table tbody td,
+.main-content .table tbody th {
+    color: #e4e6eb;
+    padding: 12px 15px;
+    border: none;
+    vertical-align: middle;
+}
+
+/* Columna de números (#) */
+.main-content .table tbody th[scope="row"] {
+    color: #0d6efd;
+    font-weight: 600;
+}
+
+/* Card Headers (para cuando uses cards) */
+.main-content .card-header {
+    background-color: #2d3139;
+    border-bottom: 2px solid #0d6efd;
+    color: #ffffff;
+    padding: 15px 20px;
+}
+
+.main-content .card-header h5 {
+    color: #ffffff;
+    margin: 0;
+    align-items: center;
+}
+
+/* Card Footer */
+.main-content .card-footer {
+    background-color: #2d3139;
+    border-top: 1px solid #3a3f4b;
+    color: #b8bcc8;
+    padding: 12px 20px;
+}
+
+/* Card Body sin padding para tablas */
+.main-content .card-body {
+    padding: 0;
+}
+
+/* ===== PAGINACIÓN EN TEMA OSCURO ===== */
+.main-content .pagination {
+    margin: 0;
+}
+
+.main-content .page-link {
+    background-color: #242831;
+    border-color: #3a3f4b;
+    color: #e4e6eb;
+}
+
+.main-content .page-link:hover {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    color: #ffffff;
+}
+
+.main-content .page-item.active .page-link {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.main-content .page-item.disabled .page-link {
+    background-color: #1f2229;
+    border-color: #2d3139;
+    color: #6c757d;
+}
+
+/* Tabla responsive */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.main-content .table-responsive {
+    border-radius: 0;
+}
