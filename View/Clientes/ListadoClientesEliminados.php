@@ -1,7 +1,7 @@
 <?php
     include_once $_SERVER['DOCUMENT_ROOT'] . '/Gesti-ndeCitas-BuffeteLegal/View/LayoutUtilidades.php';
     include_once $_SERVER['DOCUMENT_ROOT'] . '/Gesti-ndeCitas-BuffeteLegal/Controller/ClientesController.php';
-    $clientes = ConsultarClientes();
+    $clientesEliminados = ConsultarClientesEliminados();
 ?>
 
 <!doctype html>
@@ -25,17 +25,7 @@
 <div class="main-content">
     <div class="row mb-3">
         <div class="col-12 mt-4">
-            <h2 class="text-center">Listado de Clientes</h2>
-        </div>
-        <div class="mb-3">
-            <a class="btn text-white px-4" style="background-color: #0a58ca;"
-                href="RegistrarCliente.php">
-                    Registrar Cliente
-            </a>
-            <a class="btn text-white px-4 ms-2" style="background-color: #ca340aff;"
-                href="ListadoClientesEliminados.php">
-                    Clientes Eliminados
-            </a>
+            <h2 class="text-center">Listado de Clientes Eliminados</h2>
         </div>
     </div>
     
@@ -61,7 +51,7 @@
                     </thead>
                     <tbody>
                         <?php
-                            foreach ($clientes as $cliente)
+                            foreach ($clientesEliminados as $cliente)
                                 {
                                     echo"<tr>";
                                     echo"<td class='text-center align-middle'><strong>". $cliente['idCliente'] . "</strong></td>";
@@ -75,13 +65,13 @@
                                                 <div style='display: flex; justify-content: center; gap: 20px; align-items: center;'>
                                                     <a href='ActualizarCliente.php?id=" . $cliente['idCliente'] . "'
                                                         style='color: #0d6efd; font-size: 26px;'>
-                                                        <i class=\"fa-regular fa-pen-to-square\"></i>
+                                                        <i class='fa-regular fa-pen-to-square'></i>
                                                     </a>
 
                                                     <form method='POST' action='' style='margin: 0; padding: 0;'>
                                                         <input type='hidden' name='idCliente' value='" . $cliente['idCliente'] . "'>
-                                                        <button type='submit' name='btnEliminar'style='background: none; border: none; padding: 0; margin: 0; cursor: pointer; color: #dc3545; font-size: 26px;'>
-                                                            <i class=\"fa-solid fa-eraser\"></i>
+                                                        <button type='submit' name='btnActivar'style='background: none; border: none; padding: 0; margin: 0; cursor: pointer; color: #35dc3dff; font-size: 26px;'>
+                                                            <i class='fa-solid fa-rotate'></i>
                                                         </button>
                                                     </form>
                                                 </div>

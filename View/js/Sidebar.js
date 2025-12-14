@@ -13,32 +13,35 @@ document.addEventListener('DOMContentLoaded', function() {
     const sidebar = document.getElementById('sidebar');
     const contentSection = document.querySelector('.content-section');
     
-    if (toggleBtn) {
-        toggleBtn.addEventListener('click', function() {
-            sidebar.classList.toggle('collapsed');
-            contentSection.classList.toggle('expanded');
+    if (toggleBtn && sidebar && contentSection) {
+        toggleBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
             
-            // Guardar estado en localStorage
-            if (sidebar.classList.contains('collapsed')) {
-                localStorage.setItem('sidebarState', 'collapsed');
+            if (window.innerWidth > 992) {
+                // Desktop: colapsar parcialmente
+                sidebar.classList.toggle('collapsed');
+                contentSection.classList.toggle('expanded');
+                
+                // Guardar estado en localStorage
+                if (sidebar.classList.contains('collapsed')) {
+                    localStorage.setItem('sidebarState', 'collapsed');
+                } else {
+                    localStorage.setItem('sidebarState', 'expanded');
+                }
             } else {
-                localStorage.setItem('sidebarState', 'expanded');
+                // Mobile: mostrar/ocultar completamente
+                sidebar.classList.toggle('show');
             }
         });
-    }
-    
-    // Restaurar estado del sidebar al cargar la página
-    const savedState = localStorage.getItem('sidebarState');
-    if (savedState === 'collapsed') {
-        sidebar.classList.add('collapsed');
-        contentSection.classList.add('expanded');
-    }
-    
-    // Toggle sidebar en móviles (mostrar/ocultar completamente)
-    if (window.innerWidth <= 992) {
-        toggleBtn.addEventListener('click', function() {
-            sidebar.classList.toggle('show');
-        });
+        
+        // Restaurar estado del sidebar al cargar la página (solo desktop)
+        if (window.innerWidth > 992) {
+            const savedState = localStorage.getItem('sidebarState');
+            if (savedState === 'collapsed') {
+                sidebar.classList.add('collapsed');
+                contentSection.classList.add('expanded');
+            }
+        }
     }
     
     // Cerrar sidebar al hacer click fuera en móviles
@@ -57,6 +60,9 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', function() {
         if (window.innerWidth > 992) {
             sidebar.classList.remove('show');
+        } else {
+            sidebar.classList.remove('collapsed');
+            contentSection.classList.remove('expanded');
         }
     });
     
@@ -86,23 +92,36 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Cerrar dropdowns al hacer click en un item
-    dropdownItems.forEach(item => {
-        item.addEventListener('click', function(e) {
-            // Si no es el item de cerrar sesión, prevenir comportamiento por defecto
-            if (!this.textContent.includes('Cerrar Sesión')) {
-                e.preventDefault();
-                // Aquí puedes añadir la lógica para cada opción
-                console.log('Clicked:', this.textContent.trim());
+    dropdownItems.forEach(item => 
+    {
+        item.addEventListener('click', function (e) {
+
+            // ✅ Permitir enlaces normales
+            if (this.tagName === 'A' && this.getAttribute('href')) {
+                return;
             }
-            
-            // Cerrar el dropdown
-            const dropdown = bootstrap.Dropdown.getInstance(this.closest('.dropdown').querySelector('[data-bs-toggle="dropdown"]'));
+
+            // ✅ Permitir botones submit (Cerrar Sesión)
+            if (this.tagName === 'BUTTON' && this.type === 'submit') {
+                return;
+            }
+
+            // ❌ Bloquear solo acciones JS
+            e.preventDefault();
+
+            console.log('Clicked:', this.textContent.trim());
+
+            const dropdownToggle = this
+                .closest('.dropdown')
+                .querySelector('[data-bs-toggle="dropdown"]');
+
+            const dropdown = bootstrap.Dropdown.getInstance(dropdownToggle);
             if (dropdown) {
                 dropdown.hide();
             }
         });
     });
+
     
     // Animación suave para el logo
     const sidebarLogo = document.querySelector('.sidebar-logo');

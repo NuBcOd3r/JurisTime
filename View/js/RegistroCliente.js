@@ -33,10 +33,13 @@ function soloNumeros(input) {
     input.value = inicio; 
 }
 
-/*$(function () {
+$(function () {
 
-    $("#formSignin").validate({
+    $("#formRegistrarCliente").validate({
         rules: {
+            nacionalidad: {
+                required: true
+            },
             cedula: {
                 required: true
             },
@@ -47,15 +50,14 @@ function soloNumeros(input) {
                 required: true,
                 email: true
             },
-            contrasenna: {
+            telefono: {
                 required: true
-            },
-            confirmarContrasenna: {
-                required: true,
-                equalTo: "#contrasenna"
             }
         },
         messages: {
+            nacionalidad: {
+                required: "Se requiere la nacionalidad para continuar"
+            },
             cedula: {
                 required: "Se requiere la cédula para continuar"
             },
@@ -66,17 +68,13 @@ function soloNumeros(input) {
                 required: "Se requiere el correo electrónico para continuar",
                 email: "Ingrese un correo válido"
             },
-            contrasenna: {
-                required: "Se requiere la contraseña para continuar"
-            },
-            confirmarContrasenna: {
-                required: "Se requiere confirmar la contraseña para continuar",
-                equalTo: "Las contraseñas no coinciden"
+            telefono: {
+                required: "Se requiere el telefono para continuar"
             }
         }
     });
 
-});*/
+});
 
 function cambiarNacionalidad() {
     const nacionalidad = document.getElementById("nacionalidad");
@@ -97,3 +95,16 @@ function cambiarNacionalidad() {
         cedula.onkeyup = null;
     }
 }
+
+$(function () {
+
+    new DataTable('#tbClientes', {
+        language: {
+            url: 'https://cdn.datatables.net/plug-ins/2.3.4/i18n/es-ES.json',
+        },
+        columnDefs: [
+            { targets: '_all', className: 'text-start' }
+        ]
+    });
+
+});

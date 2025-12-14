@@ -25,6 +25,8 @@
                 <link rel="stylesheet" href="../css/estilosPrincipales.css">
                 <link rel="stylesheet" href="../css/estilosClientes.css">
                 <link rel="stylesheet" href="../css/estilosRegistroCliente.css">
+                <link rel="stylesheet" href="../css/estilosDatatables.css">
+                <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
             </head>
         ';
     }
@@ -32,9 +34,13 @@
     function VerSidebar()
     {
         $nombreCompleto = "";
+        $nombreRol = "";
+        $imagen = "";
         if(isset($_SESSION["nombreCompleto"]))
         {
             $nombreCompleto = $_SESSION["nombreCompleto"];
+            $nombreRol = $_SESSION["nombreRol"];
+            $imagen = $_SESSION["urlImagen"];
         }
         echo
         '
@@ -46,11 +52,11 @@
                     <hr>
                     <div class="user-profile-sidebar">
                         <div class="profile-image-container">
-                            <img src="https://github.com/mdo.png" alt="Perfil" class="profile-image">
+                            <img src="../images/'.$imagen.'" alt="Perfil" class="profile-image">
                         </div>
                         <div class="profile-info">
                             <h6 class="profile-name">'.$nombreCompleto.'</h6>
-                            <small class="profile-role">Administrador</small>
+                            <small class="profile-role">'.$nombreRol.'</small>
                         </div>
                     </div>
                     <hr>
@@ -87,9 +93,11 @@
     function VerNavbar()
     {
         $nombreCompleto = "";
+        $imagen = "";
         if(isset($_SESSION["nombreCompleto"]))
         {
             $nombreCompleto = $_SESSION["nombreCompleto"];
+            $imagen = $_SESSION["urlImagen"];
         }
         echo
         '
@@ -104,17 +112,23 @@
                         <div class="dropdown ms-auto">
                             <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle navbar-profile"
                                 id="dropdownUserNavbar" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="https://github.com/mdo.png" alt="" class="navbar-profile-img">
+                                <img src="../images/'.$imagen.'" alt="" class="navbar-profile-img">
                                 <span class="navbar-username d-none d-lg-inline">'.$nombreCompleto.'</span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end text-small shadow" aria-labelledby="dropdownUserNavbar">
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user me-2"></i>Mi Perfil</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gear me-2"></i>Configuración</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-key me-2"></i>Cambiar Contraseña</a></li>
+                                <li><a class="dropdown-item" href="../Perfil/MiPerfil.php"><i class="fa-solid fa-user me-2"></i>Mi Perfil</a></li>
+                                <li><a class="dropdown-item" href="../Perfil/ActualizarContraseña.php"><i class="fa-solid fa-key me-2"></i>Cambiar Contraseña</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-right-from-bracket me-2"></i>Cerrar Sesión</a></li>
+                                <li>
+                                    <form action="" method="POST">
+                                        <button type="submit" class="dropdown-item" id="btnSalir" name="btnSalir">
+                                            <i class="fa-solid fa-right-from-bracket me-2"></i>
+                                            <span class="align-middle">Cerrar Sesión</span>
+                                         </button>
+                                    </form>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -132,8 +146,12 @@
         echo
         '
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+            <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
             <script src="../js/Sidebar.js"></script>
+            <script src="../js/Alertas.js"></script>
             <script src="../js/RegistroCliente.js"></script>
         ';
     }

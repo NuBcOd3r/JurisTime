@@ -115,6 +115,17 @@
     font-size: 0.875rem;
 }
 
+label.error {
+    background: #ffe6e6;
+    border-left: 4px solid #ff4d4d;
+    padding: 6px 10px;
+    border-radius: 4px;
+    color: #cc0000;
+    margin-top: 10px;
+    display: block;
+    font-size: 0.9rem;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .main-content .card-body {
@@ -130,3 +141,11 @@
         flex-direction: column;
     }
 }
+
+@media screen and (max-width: 480px) {
+    label.error {
+        font-size: 0.85rem;
+        padding: 5px 8px;
+    }
+}
+
