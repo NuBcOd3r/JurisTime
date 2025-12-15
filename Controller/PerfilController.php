@@ -1,5 +1,5 @@
 <?php
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/Gesti-ndeCitas-BuffeteLegal/Model/PerfilModel.php';
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/JurisTime/Model/PerfilModel.php';
 
     if(session_status() == PHP_SESSION_NONE)
     {

@@ -1,6 +1,6 @@
 <?php
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/Gesti-ndeCitas-BuffeteLegal/Model/InicioModel.php';
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/Gesti-ndeCitas-BuffeteLegal/Controller/UtilidadesController.php';
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/JurisTime/Model/InicioModel.php';
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/JurisTime/Controller/UtilidadesController.php';
     
     if(session_status() == PHP_SESSION_NONE)
     {

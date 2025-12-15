@@ -1,5 +1,5 @@
 <?php
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/Gesti-ndeCitas-BuffeteLegal/Model/ConexionModel.php';
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/JurisTime/Model/ConexionModel.php';
       
     function ConsultarNacionalidadModel()
     {
@@ -27,12 +27,12 @@
         }
     }
 
-    function RegistrarClienteModel($nacionalidad, $cedula, $nombreCompleto, $correoElectronico, $telefono)
+    function RegistrarClienteModel($nacionalidad, $idAbogado, $cedula, $nombreCompleto, $correoElectronico, $telefono)
     {
         try
         {
             $context = OpenConnection();
-            $sentencia = "CALL RegistrarCliente('$nacionalidad', '$cedula', '$nombreCompleto', '$correoElectronico', '$telefono')";
+            $sentencia = "CALL RegistrarCliente('$nacionalidad', '$idAbogado', '$cedula', '$nombreCompleto', '$correoElectronico', '$telefono')";
             $resultado = $context -> query($sentencia);
             CloseConnection($context);
             return $resultado;
@@ -44,13 +44,13 @@
         }
     }
 
-    function ConsultarClientesModel()
+    function ConsultarClientesModel($idUsuario)
     {
         try
         {
             $context = OpenConnection();
 
-            $sentencia = "CALL ConsultarClientes()";
+            $sentencia = "CALL ConsultarClientes($idUsuario)";
             $resultado = $context -> query($sentencia);
 
             $datos = [];
@@ -170,6 +170,58 @@
         {
             SaveError($error);
             return false;
+        }
+    }
+
+    function ConsultarAbogadosModel()
+    {
+        try
+        {
+            $context = OpenConnection();
+
+            $sentencia = "CALL ConsultarAbogados()";
+            $resultado = $context -> query($sentencia);
+
+            $datos = [];
+            while ($row = $resultado->fetch_assoc()) {
+                $datos[] = $row;
+            }
+
+            $resultado->free();
+            CloseConnection($context);
+
+            return $datos;
+        }
+        catch(Exception $error)
+        {
+            SaveError($error);
+            return null;
+        }
+    }
+
+    function ConsultarClientesSecretariaModel()
+    {
+        try
+        {
+            $context = OpenConnection();
+
+            $sentencia = "CALL ConsultarClientesSecretaria()";
+            $resultado = $context -> query($sentencia);
+
+            $datos = [];
+            while ($row = $resultado->fetch_assoc()) {
+                $datos[] = $row;
+            }
+
+            $resultado->free();
+            CloseConnection($context);
+
+            return $datos;
+        }
+        catch(Exception $error)
+        {
+            SaveError($error);
+            return null;
         }
     }
 ?>

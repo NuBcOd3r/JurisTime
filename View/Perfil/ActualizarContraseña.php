@@ -1,6 +1,6 @@
 <?php
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/Gesti-ndeCitas-BuffeteLegal/View/LayoutUtilidades.php';
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/Gesti-ndeCitas-BuffeteLegal/Controller/PerfilController.php';
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/JurisTime/View/LayoutUtilidades.php';
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/JurisTime/Controller/PerfilController.php';
 ?>
 
 <!doctype html>
