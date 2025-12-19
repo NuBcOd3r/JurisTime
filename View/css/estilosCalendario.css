@@ -1,0 +1,239 @@
+/* ============================= */
+/* ===== CONTENEDOR GENERAL ==== */
+/* ============================= */
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+}
+
+/* ============================= */
+/* ===== CONTENEDOR CALENDAR ==== */
+/* ============================= */
+
+.main-content #calendar {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 100%;
+    overflow-x: visible;
+    min-height: 720px; /* 🔴 FIX CLAVE */
+}
+
+/* ============================= */
+/* ===== FULLCALENDAR BASE ===== */
+/* ============================= */
+
+.main-content .fc {
+    background-color: #ffffff;
+    color: #333333;
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+}
+
+/* ============================= */
+/* ===== TOOLBAR / HEADER ====== */
+/* ============================= */
+
+.main-content .fc .fc-toolbar {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px 8px 0 0;
+}
+
+.main-content .fc .fc-toolbar-title,
+.main-content .fc .fc-toolbar h2 {
+    color: #333333 !important;
+    text-transform: uppercase;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+/* ============================= */
+/* ===== BOTONES TOOLBAR ======= */
+/* ============================= */
+
+.main-content .fc .fc-button {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.main-content .fc .fc-button:hover {
+    background-color: #0b5ed7;
+    transform: translateY(-1px);
+}
+
+.main-content .fc .fc-button-active {
+    background-color: #0a58ca;
+}
+
+.main-content .fc .fc-button-primary:disabled {
+    background-color: #6c757d;
+    opacity: 0.6;
+}
+
+/* ============================= */
+/* ===== ENCABEZADO DIAS ======= */
+/* ============================= */
+
+.main-content .fc .fc-col-header {
+    background-color: #0d6efd;
+}
+
+.main-content .fc .fc-col-header-cell {
+    background-color: #0d6efd;
+    border-color: #0a58ca;
+    padding: 10px;
+}
+
+.main-content .fc .fc-col-header-cell-cushion {
+    color: #ffffff;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+/* ============================= */
+/* ===== CELDAS DIAS =========== */
+/* ============================= */
+
+.main-content .fc .fc-daygrid-day {
+    background-color: #ffffff;
+    border-color: #dee2e6;
+}
+
+.main-content .fc .fc-daygrid-day:hover {
+    background-color: #f8f9fa;
+}
+
+.main-content .fc .fc-daygrid-day-number {
+    color: #333333;
+    font-weight: 600;
+    padding: 8px;
+}
+
+/* ============================= */
+/* ===== DIA ACTUAL ============ */
+/* ============================= */
+
+.main-content .fc .fc-day-today {
+    background-color: #e7f3ff !important;
+}
+
+.main-content .fc .fc-day-today .fc-daygrid-day-number {
+    background-color: #0d6efd;
+    color: #ffffff;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ============================= */
+/* ===== OTROS MESES =========== */
+/* ============================= */
+
+.main-content .fc .fc-day-other {
+    background-color: #f8f9fa;
+}
+
+.main-content .fc .fc-day-other .fc-daygrid-day-number {
+    color: #adb5bd;
+}
+
+/* ============================= */
+/* ===== EVENTOS (FIX FINAL) === */
+/* ============================= */
+
+.main-content .fc-event {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    color: #ffffff;
+    border-radius: 6px;
+    padding: 4px 6px;
+    margin: 2px 0;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(13, 110, 253, 0.4);
+}
+
+.main-content .fc-event:hover {
+    background-color: #0b5ed7;
+    transform: scale(1.02);
+}
+
+/* ============================= */
+/* ===== WEEK / DAY VIEW ======= */
+/* ============================= */
+
+.main-content .fc .fc-timegrid-slot {
+    height: 3em;
+    border-color: #dee2e6;
+}
+
+.main-content .fc .fc-timegrid-slot-label {
+    font-size: 0.85rem;
+}
+
+.main-content .fc .fc-timegrid-axis {
+    background-color: #f8f9fa;
+}
+
+.fc-timegrid-axis-cushion {
+    text-align: center;
+    width: 100%;
+}
+
+/* ============================= */
+/* ===== LINEA TIEMPO AHORA ==== */
+/* ============================= */
+
+.main-content .fc .fc-timegrid-now-indicator-line {
+    border-color: #dc3545;
+    border-width: 2px;
+}
+
+/* ============================= */
+/* ===== POPOVER =============== */
+/* ============================= */
+
+.main-content .fc .fc-popover {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.main-content .fc .fc-popover-header {
+    background-color: #0d6efd;
+    color: #ffffff;
+    padding: 10px;
+}
+
+/* ============================= */
+/* ===== RESPONSIVE ============ */
+/* ============================= */
+
+@media (max-width: 768px) {
+    .main-content #calendar {
+        padding: 10px;
+    }
+
+    .main-content .fc .fc-toolbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .main-content .fc .fc-toolbar-title {
+        font-size: 1.25rem !important;
+        text-align: center;
+    }
+}

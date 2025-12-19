@@ -46,6 +46,7 @@
                             <th scope="col" class="text-center align-middle">Nombre</th>
                             <th scope="col" class="text-center align-middle">Correo Electronico</th>
                             <th scope="col" class="text-center align-middle">Teléfono</th>
+                            <th scope="col" class="text-center align-middle">Teléfono Extra</th>
                             <th scope="col" class="text-center align-middle">Acciones</th>
                         </tr>
                     </thead>
@@ -59,6 +60,7 @@
                                     echo"<td class='text-center align-middle'><strong>". $cliente['nombreCompleto'] . "</strong></td>";
                                     echo"<td class='text-center align-middle'><strong>". $cliente['correoElectronico'] . "</strong></td>";
                                     echo"<td class='text-center align-middle'><strong>". $cliente['telefono'] . "</strong></td>";
+                                    echo"<td class='text-center align-middle'><strong>". $cliente['telefonoExtra'] . "</strong></td>";
                                     echo
                                         "
                                             <td class='text-center align-middle'>

@@ -26,7 +26,10 @@
                 <link rel="stylesheet" href="../css/estilosClientes.css">
                 <link rel="stylesheet" href="../css/estilosRegistroCliente.css">
                 <link rel="stylesheet" href="../css/estilosDatatables.css">
+                <link rel="stylesheet" href="../css/estilosCalendario.css">
+                <link rel="stylesheet" href="../css/estilosModal.css">
                 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+                <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.js"></script>
             </head>
         ';
     }
@@ -61,11 +64,30 @@
                     </div>
                     <hr>
                     <ul class="nav nav-pills flex-column mb-auto">
-                        <li>
-                            <a href="../Administrativo/Dashboard.php" class="nav-link text-white">
+                        <li class="nav-item dropdown">
+                            <a href="#" 
+                            class="nav-link dropdown-toggle text-white"
+                            id="menuAdministrativo"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
                                 <i class="fa-solid fa-gauge me-2"></i>
-                                <span class="menu-text">Dashboard</span>
+                                <span class="menu-text">Administrativo</span>
                             </a>
+
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="menuAdministrativo">
+                                <li>
+                                    <a class="dropdown-item" href="../Administrativo/Dashboard.php">
+                                        <i class="fa-solid fa-chart-line me-2"></i> Dashboard
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="../Administrativo/Materias.php">
+                                        <i class="fa-solid fa-gavel"></i> Materias
+                                    </a>
+                                </li>
+
+                            </ul>
                         </li>
                         <li>
                             <a href="../Clientes/ListadoClientes.php" class="nav-link text-white">
@@ -74,13 +96,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link text-white">
+                            <a href="../Casos/ListadoCasos.php" class="nav-link text-white">
                                 <i class="fa-solid fa-box me-2"></i>
-                                <span class="menu-text">Expedientes</span>
+                                <span class="menu-text">Casos</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link text-white">
+                            <a href="../Calendario/VerCalendario.php" class="nav-link text-white">
                                 <i class="fa-solid fa-calendar me-2"></i>
                                 <span class="menu-text">Calendario</span>
                             </a>
@@ -153,6 +175,10 @@
             <script src="../js/Sidebar.js"></script>
             <script src="../js/Alertas.js"></script>
             <script src="../js/RegistroCliente.js"></script>
+            <script src="../js/VerCalendario.js"></script>
+            <script src="../js/Actividades.js"></script>
+            <script src="../js/Materias.js"></script>
+            <script src="../js/Casos.js"></script>
         ';
     }
 ?>
