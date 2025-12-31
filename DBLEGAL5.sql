@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `dblegal` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `dblegal`;
--- MySQL dump 10.13  Distrib 8.0.43, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.44, for Win64 (x86_64)
 --
 -- Host: localhost    Database: dblegal
 -- ------------------------------------------------------
--- Server version	8.0.43
+-- Server version	8.0.44
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -53,11 +53,13 @@ DROP TABLE IF EXISTS `tbcaso`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbcaso` (
   `idCaso` int NOT NULL AUTO_INCREMENT,
-  `idAbogado` int DEFAULT NULL,
+  `idAbogado` int NOT NULL,
   `numeroExpediente` varchar(255) DEFAULT NULL,
   `idTipoCliente` int NOT NULL,
   `parteActora` varchar(255) NOT NULL,
   `parteDemandada` varchar(255) NOT NULL,
+  `cedulaActora` varchar(255) DEFAULT NULL,
+  `cedulaDemandada` varchar(255) DEFAULT NULL,
   `idMateria` int NOT NULL,
   `tipoCaso` varchar(255) NOT NULL,
   `idCircuito` int NOT NULL,
@@ -68,7 +70,7 @@ CREATE TABLE `tbcaso` (
   KEY `FK__CASO_ABOGADO` (`idAbogado`),
   CONSTRAINT `FK__CASO_ABOGADO` FOREIGN KEY (`idAbogado`) REFERENCES `tbusuario` (`idUsuario`),
   CONSTRAINT `FK_CLIENTE_CASO_TIPO_CLIENTE` FOREIGN KEY (`idTipoCliente`) REFERENCES `tbtipocliente` (`idTipoCliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -77,6 +79,7 @@ CREATE TABLE `tbcaso` (
 
 LOCK TABLES `tbcaso` WRITE;
 /*!40000 ALTER TABLE `tbcaso` DISABLE KEYS */;
+INSERT INTO `tbcaso` VALUES (10,8,'D-12345',2,'MANUEL','FABIO GERARDO CORELLA DIAZ','','204470866',2,'DESPIDO INJUSTIFICADO',6,'D4',7),(11,8,'C-123456',1,'FABIO GERARDO CORELLA DIAZ','MAYRA GUZMAN','204470866','',2,'DESPIDO INJUSTIFICADO',6,'D4',10),(12,10,'e-12345',1,'FABIO GERARDO CORELLA DIAZ','MAYRA GUZMAN','204470866','',3,'VAR',6,'F5',2);
 /*!40000 ALTER TABLE `tbcaso` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,7 +138,7 @@ CREATE TABLE `tbcliente` (
 
 LOCK TABLES `tbcliente` WRITE;
 /*!40000 ALTER TABLE `tbcliente` DISABLE KEYS */;
-INSERT INTO `tbcliente` VALUES (11,1,8,'204470866','FABIO GERARDO CORELLA DIAZ','fabio@gmail.com',85906846,1,_binary ''),(12,1,8,'204540125','CLAUDIA GERALDINA PANIAGUA LOPEZ','claudia@gmail.com',12345678,NULL,_binary ''),(13,1,10,'205480863','GUSTAVO ADOLFO MELENDEZ NAVARRETE','gustavo@gmail.com',11221122,NULL,_binary '');
+INSERT INTO `tbcliente` VALUES (11,1,8,'204470866','FABIO GERARDO CORELLA DIAZ','fabio@gmail.com',85906846,1,_binary '\0'),(12,1,8,'204540125','CLAUDIA GERALDINA PANIAGUA LOPEZ','claudia@gmail.com',12345678,NULL,_binary ''),(13,1,10,'205480863','GUSTAVO ADOLFO MELENDEZ NAVARRETE','gustavo@gmail.com',11221122,NULL,_binary '');
 /*!40000 ALTER TABLE `tbcliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -151,7 +154,7 @@ CREATE TABLE `tberror` (
   `mensaje` varchar(8000) NOT NULL,
   `fechaHora` datetime NOT NULL,
   PRIMARY KEY (`idError`)
-) ENGINE=InnoDB AUTO_INCREMENT=149 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=154 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -160,7 +163,7 @@ CREATE TABLE `tberror` (
 
 LOCK TABLES `tberror` WRITE;
 /*!40000 ALTER TABLE `tberror` DISABLE KEYS */;
-INSERT INTO `tberror` VALUES (139,'Incorrect number of arguments for PROCEDURE dblegal.ConsultarEventos; expected 1, got 0','2025-12-17 13:47:52'),(140,'Incorrect number of arguments for PROCEDURE dblegal.ConsultarEventos; expected 1, got 0','2025-12-17 13:48:30'),(141,'Incorrect number of arguments for PROCEDURE dblegal.ConsultarEventos; expected 1, got 0','2025-12-17 13:48:40'),(142,'Incorrect number of arguments for PROCEDURE dblegal.ConsultarEventosSecretaria; expected 1, got 0','2025-12-17 14:03:25'),(143,'Incorrect integer value: \'\' for column \'pIdMateria\' at row 1','2025-12-18 13:43:56'),(144,'Incorrect integer value: \'\' for column \'pIdMateria\' at row 1','2025-12-18 14:57:33'),(145,'Incorrect integer value: \'\' for column \'pIdMateria\' at row 1','2025-12-18 14:58:39'),(146,'Incorrect integer value: \'\' for column \'pIdAbogado\' at row 1','2025-12-19 13:56:35'),(147,'Incorrect number of arguments for PROCEDURE dblegal.ConsultarEstado; expected 1, got 0','2025-12-19 16:01:17'),(148,'Unknown column \'estado\' in \'where clause\'','2025-12-19 16:03:47');
+INSERT INTO `tberror` VALUES (139,'Incorrect number of arguments for PROCEDURE dblegal.ConsultarEventos; expected 1, got 0','2025-12-17 13:47:52'),(140,'Incorrect number of arguments for PROCEDURE dblegal.ConsultarEventos; expected 1, got 0','2025-12-17 13:48:30'),(141,'Incorrect number of arguments for PROCEDURE dblegal.ConsultarEventos; expected 1, got 0','2025-12-17 13:48:40'),(142,'Incorrect number of arguments for PROCEDURE dblegal.ConsultarEventosSecretaria; expected 1, got 0','2025-12-17 14:03:25'),(143,'Incorrect integer value: \'\' for column \'pIdMateria\' at row 1','2025-12-18 13:43:56'),(144,'Incorrect integer value: \'\' for column \'pIdMateria\' at row 1','2025-12-18 14:57:33'),(145,'Incorrect integer value: \'\' for column \'pIdMateria\' at row 1','2025-12-18 14:58:39'),(146,'Incorrect integer value: \'\' for column \'pIdAbogado\' at row 1','2025-12-19 13:56:35'),(147,'Incorrect number of arguments for PROCEDURE dblegal.ConsultarEstado; expected 1, got 0','2025-12-19 16:01:17'),(148,'Unknown column \'estado\' in \'where clause\'','2025-12-19 16:03:47'),(149,'Unknown column \'estado\' in \'where clause\'','2025-12-25 20:22:36'),(150,'Unknown column \'estado\' in \'where clause\'','2025-12-26 11:15:47'),(151,'Unknown column \'estado\' in \'where clause\'','2025-12-26 11:20:39'),(152,'Incorrect number of arguments for PROCEDURE dblegal.RegistrarCaso; expected 11, got 12','2025-12-30 12:51:35'),(153,'Incorrect integer value: \'DESPIDO INJUSTIFICADO\' for column \'idCaso\' at row 1','2025-12-31 12:53:03');
 /*!40000 ALTER TABLE `tberror` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -338,13 +341,36 @@ CREATE TABLE `tbusuario` (
 
 LOCK TABLES `tbusuario` WRITE;
 /*!40000 ALTER TABLE `tbusuario` DISABLE KEYS */;
-INSERT INTO `tbusuario` VALUES (8,2,207960874,'BRANDON JOSUE CORELLA SANCHEZ','corellabrandon@gmail.com','$2y$10$89O0MZY95CVmEALXrBgRSOM0YMZoer66i.nOfxKSr87G2rSUSLuhm',_binary '','../images/FotoPerfil.png'),(9,3,204570854,'CALDERON CAMPOS ROSA MARIA','rosa@gmail.com','$2y$10$yPy5b2pZwJabzQvN3PiHT.2nxJqxK97y4n5NZe/HQeyumTulE4BIS',_binary '','../images/seph.png'),(10,2,207920406,'KALETT JOSUE CERDA OBANDO','kalett@gmail.com','$2y$10$ih8z9FeovvsSAw7qDGAkn.ygrdM/YCGk3/diMSlcYyKVhodFU0s1S',_binary '','null');
+INSERT INTO `tbusuario` VALUES (8,2,207960874,'BRANDON JOSUE CORELLA SANCHEZ','corellabrandon@gmail.com','$2y$10$4TwfOIzf0TYIqoQ63jTVQOnM0SV8VGD/XchsbRZMzEYScb4f.Eys2',_binary '','../images/FotoPerfil.png'),(9,3,204570854,'CALDERON CAMPOS ROSA MARIA','rosa@gmail.com','$2y$10$yPy5b2pZwJabzQvN3PiHT.2nxJqxK97y4n5NZe/HQeyumTulE4BIS',_binary '','../images/seph.png'),(10,2,207920406,'KALETT JOSUE CERDA OBANDO','kalett@gmail.com','$2y$10$ih8z9FeovvsSAw7qDGAkn.ygrdM/YCGk3/diMSlcYyKVhodFU0s1S',_binary '','null');
 /*!40000 ALTER TABLE `tbusuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
 -- Dumping routines for database 'dblegal'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `ActivarCaso` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ActivarCaso`(
+	pIdCaso INT
+)
+BEGIN
+	UPDATE tbcaso
+	SET idEstado = 1
+    WHERE idCaso = pIdCaso;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `ActivarCliente` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -362,6 +388,41 @@ BEGIN
 	UPDATE tbcliente
 	SET estado = 1
     WHERE idCliente = pIdCliente;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ActualizarCaso` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarCaso`(
+	pIdCaso INT,
+    pNumeroExpediente varchar(255),
+	pIdMateria int, 
+	pTipoCaso varchar(255), 
+	pIdCircuito int, 
+	pUbicacionExpediente varchar(45), 
+	pIdEstado int
+)
+BEGIN
+	UPDATE tbcaso
+	SET 
+		numeroExpediente = pNumeroExpediente,
+		idMateria = pIdMateria, 
+		tipoCaso = pTipoCaso, 
+		idCircuito = pIdCircuito, 
+		ubicacionExpediente = pUbicacionExpediente, 
+		idEstado = pIdEstado
+    WHERE idCaso = pIdCaso;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -470,6 +531,30 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `BuscarNombreCedula` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `BuscarNombreCedula`(
+	pCedula varchar(255)
+)
+BEGIN
+	SELECT
+        nombreCompleto
+    from tbcliente
+    WHERE cedula = pCedula;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `ConsultarAbogados` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -540,7 +625,7 @@ BEGIN
     from tbcaso C
     INNER JOIN tbtipocliente T ON C.idTipoCliente = T.idTipoCliente
     WHERE idAbogado = pIdAbogado
-    AND estado <> 'Finalizado';
+    AND idEstado <> 10;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -570,7 +655,68 @@ BEGIN
     from tbcaso C
     INNER JOIN tbtipocliente T ON C.idTipoCliente = T.idTipoCliente
     inner join tbusuario U on C.idAbogado = U.idUsuario
-    and estado <> 'Finalizado';
+    and idEstado <> 10;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ConsultarCasosFinalizados` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarCasosFinalizados`(
+	pIdAbogado INT
+)
+BEGIN
+	SELECT
+		idCaso,
+        numeroExpediente,
+        nombreTipoCliente,
+        parteActora,
+        parteDemandada,
+        ubicacionExpediente
+    from tbcaso C
+    INNER JOIN tbtipocliente T ON C.idTipoCliente = T.idTipoCliente
+    WHERE idAbogado = pIdAbogado
+    AND idEstado = 10;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ConsultarCasosFinalizadosSecretaria` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarCasosFinalizadosSecretaria`()
+BEGIN
+	SELECT
+		idCaso,
+        numeroExpediente,
+        nombreCompleto,
+        nombreTipoCliente,
+        parteActora,
+        parteDemandada,
+        ubicacionExpediente
+    from tbcaso C
+    INNER JOIN tbtipocliente T ON C.idTipoCliente = T.idTipoCliente
+    inner join tbusuario U on C.idAbogado = U.idUsuario
+    and idEstado = 10;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -883,6 +1029,111 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `DetalleCaso` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `DetalleCaso`(IN pIdCaso INT)
+BEGIN
+    DECLARE vTipoCliente VARCHAR(100);
+
+    SELECT TP.nombreTipoCliente
+    INTO vTipoCliente
+    FROM tbcaso C
+    INNER JOIN tbtipocliente TP ON C.idTipoCliente = TP.idTipoCliente
+    WHERE C.idCaso = pIdCaso;
+
+    IF vTipoCliente = 'Parte Actora' THEN
+
+        SELECT  
+            C.idCaso,
+            U.nombreCompleto AS abogado,
+            C.numeroExpediente,
+            TP.nombreTipoCliente,
+            CL.cedula,
+            CL.nombreCompleto AS cliente,
+            CL.correoElectronico,
+            CL.telefono,
+            CL.telefonoExtra,
+            C.parteDemandada,
+            M.nombreMateria,
+            C.tipoCaso,
+            CC.nombreCircuito,
+            C.ubicacionExpediente,
+            E.nombreEstado
+        FROM tbcaso C
+        INNER JOIN tbcliente CL ON C.cedulaActora = CL.cedula
+        INNER JOIN tbtipocliente TP  ON C.idTipoCliente = TP.idTipoCliente
+        INNER JOIN tbmaterialegal M  ON C.idMateria = M.idMateriaLegal
+        INNER JOIN tbestado E  ON C.idEstado = E.idEstado
+        INNER JOIN tbusuario U ON C.idAbogado = U.idUsuario
+        INNER JOIN tbcircuito CC ON C.idCircuito = CC.idCircuito
+        WHERE C.idCaso = pIdCaso;
+
+    ELSEIF vTipoCliente = 'Parte Demandada' THEN
+
+        SELECT  
+            C.idCaso,
+            U.nombreCompleto AS abogado,
+            C.numeroExpediente,
+            TP.nombreTipoCliente,
+            CL.cedula,
+            CL.nombreCompleto AS cliente,
+            CL.correoElectronico,
+            CL.telefono,
+            CL.telefonoExtra,
+            C.parteActora,
+            M.nombreMateria,
+            C.tipoCaso,
+            CC.nombreCircuito,
+            C.ubicacionExpediente,
+            E.nombreEstado
+        FROM tbcaso C
+        INNER JOIN tbcliente CL  ON C.cedulaDemandada = CL.cedula
+        INNER JOIN tbtipocliente TP ON C.idTipoCliente = TP.idTipoCliente
+        INNER JOIN tbmaterialegal M   ON C.idMateria = M.idMateriaLegal
+        INNER JOIN tbestado E  ON C.idEstado = E.idEstado
+        INNER JOIN tbusuario U  ON C.idAbogado = U.idUsuario
+        INNER JOIN tbcircuito CC ON C.idCircuito = CC.idCircuito
+        WHERE C.idCaso = pIdCaso;
+
+    END IF;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `EliminarCaso` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `EliminarCaso`(
+	pIdCaso INT
+)
+BEGIN
+	UPDATE tbcaso
+	SET idEstado = 10
+    WHERE idCaso = pIdCaso;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `EliminarCliente` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -957,6 +1208,39 @@ BEGIN
     SELECT contrasenna
     FROM tbusuario
     WHERE idUsuario = p_idUsuario;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `RegistrarCaso` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RegistrarCaso`(
+	pIdAbogado int,
+	pNumeroExpediente varchar(255) ,
+	pIdTipoCliente int ,
+	pParteActora varchar(255) ,
+	pParteDemandada varchar(255) ,
+    pCedulaActora varchar(255),
+    pCedulaDemandada varchar(255),
+	pIdMateria int ,
+	pTipoCaso varchar(255) ,
+	pIdCircuito int ,
+	pUbicacionExpediente varchar(45) ,
+	pIdEstado int
+)
+BEGIN
+	INSERT INTO tbcaso (idAbogado,numeroExpediente,idTipoCliente,parteActora, parteDemandada, cedulaActora, cedulaDemandada, idMateria, tipoCaso, idCircuito, ubicacionExpediente, idEstado)
+	VALUES (pIdAbogado, pNumeroExpediente, pIdTipoCliente, pParteActora, pParteDemandada, pCedulaActora, pCedulaDemandada, pIdMateria, pTipoCaso, pIdCircuito, pUbicacionExpediente, pIdEstado);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1050,30 +1334,6 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `RegistrarMateria` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RegistrarMateria`(
-	pNombreMateria varchar(255)
-)
-BEGIN
-
-	INSERT INTO tbmaterialegal (nombreMateria)
-	VALUES (pNombreMateria);
-
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `RegistrarUsuario` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -1151,4 +1411,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-12-19 16:39:34
+-- Dump completed on 2025-12-31 12:59:27

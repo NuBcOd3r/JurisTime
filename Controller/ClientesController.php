@@ -66,8 +66,7 @@
 
         if($resultado)
         {
-            $_POST["MensajeExito"] = "Cliente eliminado correctamente.";
-            include_once '../../View/Clientes/ListadoClientes.php';
+            header("Location: ListadoClientes.php?exito=1");
             exit;
         }
         else

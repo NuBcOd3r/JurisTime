@@ -13,6 +13,7 @@
 }
 
 .modal-header::before {
+    pointer-events: none;
     content: '';
     position: absolute;
     top: 0;
@@ -160,4 +161,16 @@
 
 .modal.show .modal-content {
     animation: modalFadeIn 0.3s ease-out;
+}
+
+.modal {
+    z-index: 20000 !important;
+}
+
+.modal-backdrop {
+    z-index: 19990 !important;
+}
+
+.modal.fade .modal-dialog {
+    transform: none;
 }

@@ -64,30 +64,11 @@
                     </div>
                     <hr>
                     <ul class="nav nav-pills flex-column mb-auto">
-                        <li class="nav-item dropdown">
-                            <a href="#" 
-                            class="nav-link dropdown-toggle text-white"
-                            id="menuAdministrativo"
-                            role="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                                <i class="fa-solid fa-gauge me-2"></i>
-                                <span class="menu-text">Administrativo</span>
+                        <li>
+                            <a href="../Administrativo/Dashboard.php" class="nav-link text-white">
+                                <i class="fa-solid fa-chart-line me-2"></i> 
+                                <span class="menu-text">Dashboard</span>
                             </a>
-
-                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="menuAdministrativo">
-                                <li>
-                                    <a class="dropdown-item" href="../Administrativo/Dashboard.php">
-                                        <i class="fa-solid fa-chart-line me-2"></i> Dashboard
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="../Administrativo/Materias.php">
-                                        <i class="fa-solid fa-gavel"></i> Materias
-                                    </a>
-                                </li>
-
-                            </ul>
                         </li>
                         <li>
                             <a href="../Clientes/ListadoClientes.php" class="nav-link text-white">
@@ -175,9 +156,6 @@
             <script src="../js/Sidebar.js"></script>
             <script src="../js/Alertas.js"></script>
             <script src="../js/RegistroCliente.js"></script>
-            <script src="../js/VerCalendario.js"></script>
-            <script src="../js/Actividades.js"></script>
-            <script src="../js/Materias.js"></script>
             <script src="../js/Casos.js"></script>
         ';
     }

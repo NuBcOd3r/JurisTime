@@ -27,6 +27,12 @@
         <div class="col-12 mt-4">
             <h2 class="text-center">Listado de Clientes Eliminados</h2>
         </div>
+        <div class="mb-3">
+            <a class="btn text-white px-4" style="background-color: #b4b4b4ff;"
+                href="ListadoClientes.php">
+                    Volver
+            </a>
+        </div>
     </div>
     
     <div class="card">

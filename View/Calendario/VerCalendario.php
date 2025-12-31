@@ -220,6 +220,8 @@
 <?php
     VerJs()
 ?>
+<script src="../js/Actividades.js"></script>
+<script src="../js/VerCalendario.js"></script>
 </body>
 
 </html>

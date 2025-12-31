@@ -29,16 +29,16 @@
 
 <body>
 
-<?php
-    VerSidebar()
-?>
+    <?php
+        VerSidebar()
+    ?>
 
-<?php
-    VerNavbar()
-?>
+    <?php
+        VerNavbar()
+    ?>
 
 
-<?php
+    <?php
     $nombreCompleto = "";
     $nombreRol = "";
     if(isset($_SESSION["nombreCompleto"]))
@@ -92,17 +92,43 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="parteActora" class="form-label">Parte Actora </label>
-                        <input type="text" class="form-control form-control-dark" placeholder="Ingrese el nombre completo de la parte actora" id="parteActora" name="parteActora">
+                        <label class="form-label">Parte Actora</label>
+                        <div class="d-flex gap-2">
+                            <input type="text" id="parteActora" name="parteActora" class="form-control form-control-dark">
+                            <button type="button"
+                                class="btn btn-primary btn-cliente"
+                                data-bs-toggle="modal"
+                                data-bs-target="#ModalCliente"
+                                data-tipo="ACTORA"
+                                disabled
+                                id="btnActora">
+                            Consultar
+                        </button>
+                        </div>
                     </div>
+                    
+                    <input type="hidden" id="cedulaActora" name="cedulaActora">
 
                     <div class="mb-3">
-                        <label for="parteDemandante" class="form-label">Parte Demandante </label>
-                        <input type="text" class="form-control form-control-dark" placeholder="Ingrese el nombre completo de la parte demandante" id="parteDemandante" name="parteDemandante">
+                        <label class="form-label">Parte Demandante</label>
+                        <div class="d-flex gap-2">
+                            <input type="text" id="parteDemandante" name="parteDemandante" class="form-control form-control-dark">
+                            <button type="button"
+                                class="btn btn-primary btn-cliente"
+                                data-bs-toggle="modal"
+                                data-bs-target="#ModalCliente"
+                                data-tipo="DEMANDANTE"
+                                disabled
+                                id="btnDemandante">
+                            Consultar
+                        </button>
+                        </div>
                     </div>
 
+                    <input type="hidden" id="cedulaDemandada" name="cedulaDemandada">
+
                     <div class="mb-3">
-                        <label for="materia" class="form-label">Tipo de Cliente</label>
+                        <label for="materia" class="form-label">Matería</label>
                         <select name="materia" id="materia" class="form-select form-select-dark" required>
                             <option value="">Seleccione un tipo de Materia</option>
                             ';
@@ -134,13 +160,16 @@
                         <div class="d-flex gap-2">
                             <select name="circuito" id="circuito" class="form-select form-select-dark" required>
                                 <option value="">Seleccione un circuito</option>';
-                                if (!empty($circuito)) {
-                                    foreach ($circuito as $opcion) {
+                                if (!empty($circuito)) 
+                                {
+                                    foreach ($circuito as $opcion) 
+                                    {
                                         echo '<option value="' . $opcion['idCircuito'] . '">' .
                                             htmlspecialchars($opcion['nombreCircuito']) .
                                             '</option>';
                                     }
-                                } else {
+                                } else 
+                                {
                                     echo "<option value=''>No hay circuitos por mostrar</option>";
                                 }
                             echo'
@@ -154,8 +183,8 @@
      
                     <div class="mb-3">
                         <label for="ubicacionExpediente" class="form-label">Ubicación del Expediente</label>
-                        <input type="number" class="form-control form-control-dark" id="ubicacionExpediente" name="ubicacionExpediente"
-                            placeholder="D2"" required>
+                        <input type="text" class="form-control form-control-dark" id="ubicacionExpediente" name="ubicacionExpediente"
+                            placeholder="D2" required>
                     </div>
 
                     <div class="mb-3">
@@ -184,8 +213,8 @@
                             <a href="ListadoClientes.php" class="btn btn-secondary">
                                 <i class="fa-solid fa-times me-1"></i> Cancelar
                             </a>
-                            <button type="submit" class="btn btn-primary" name="btnRegistrarCliente" id="btnRegistrarCliente">
-                                <i class="fa-solid fa-save me-1"></i> Guardar Cliente
+                            <button type="submit" class="btn btn-primary" name="btnRegistrarCaso" id="btnRegistrarCaso">
+                                <i class="fa-solid fa-save me-1"></i> Guardar Caso
                             </button>
                         </div>
                     </div>
@@ -202,10 +231,10 @@
     <div class="main-content">
         <div class="card">
             <div class="card-header position-relative text-center">
-                <h5 class="mb-0">Información del Cliente</h5>
+                <h5 class="mb-0">Registro de Casos</h5>
             </div>
             <div class="card-body p-4">
-                <form id="formRegistrarCliente" method="POST" action="">
+                <form id="formRegistrarCaso" method="POST" action="">
                 ';
                     if(isset($_POST["Mensaje"]))
                     {
@@ -214,29 +243,13 @@
                 echo
                 '
                     <div class="mb-3">
-                        <label for="nacionalidad" class="form-label">Nacionalidad</label>
-                        <select name="nacionalidad" id="nacionalidad" class="form-select form-select-dark" onchange="cambiarNacionalidad()" required>
-                            <option value="">Seleccione una nacionalidad</option>
-                            ';
-                            if(!empty($nacionalidad))
-                            {
-                                foreach($nacionalidad as $opcion)
-                                {
-                                    echo '<option value="' . $opcion['idNacionalidad'] . '">' . htmlspecialchars($opcion['nombreNacionalidad']) . '</option>';
-                                }
-                            }
-                            else
-                            {
-                                echo"<option value=''>No hay nacionalidades por mostrar</option>";
-                            }
-                        echo
-                        '
-                        </select>
+                        <label for="numeroExpediente" class="form-label">Numero de Expediente</label>
+                        <input type="text" class="form-control form-control-dark" placeholder="Ejm. 25-001074-0639-LA-1" id="numeroExpediente" name="numeroExpediente">
                     </div>
 
                     <div class="mb-3">
-                        <label for="nacionalidad" class="form-label">Abogado</label>
-                        <select name="Abogado" id="Abogado" class="form-select form-select-dark" required>
+                        <label for="abogado" class="form-label">Abogado</label>
+                        <select name="abogado" id="abogado" class="form-select form-select-dark" required>
                             <option value="">Seleccione un abogado</option>
                             ';
                             if(!empty($abogados))
@@ -256,25 +269,141 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="cedula" class="form-label">Cédula</label>
-                        <input type="text" class="form-control form-control-dark" placeholder="Ingrese una cedula o identificación" id="cedula" name="cedula">
+                        <label for="tipoCliente" class="form-label">Tipo de Cliente</label>
+                        <select name="tipoCliente" id="tipoCliente" class="form-select form-select-dark" onchange="cambiarTipoCliente()" required>
+                            <option value="">Seleccione un tipo de Cliente</option>
+                            ';
+                            if(!empty($tipoCliente))
+                            {
+                                foreach($tipoCliente as $opcion)
+                                {
+                                    echo '<option value="' . $opcion['idTipoCliente'] . '">' . htmlspecialchars($opcion['nombreTipoCliente']) . '</option>';
+                                }
+                            }
+                            else
+                            {
+                                echo"<option value=''>No hay tipos de cliente por mostrar</option>";
+                            }
+                        echo
+                        '
+                        </select>
                     </div>
 
                     <div class="mb-3">
-                        <label for="nombreCompleto" class="form-label">Nombre Completo</label>
-                        <input type="text" class="form-control form-control-dark" placeholder="Ingrese el nombre completo" id="nombreCompleto" name="nombreCompleto">
+                        <label class="form-label">Parte Actora</label>
+                        <div class="d-flex gap-2">
+                            <input type="text" id="parteActora" name="parteActora" class="form-control form-control-dark">
+                            <button type="button"
+                                class="btn btn-primary btn-cliente"
+                                data-bs-toggle="modal"
+                                data-bs-target="#ModalCliente"
+                                data-tipo="ACTORA"
+                                disabled
+                                id="btnActora">
+                            Consultar
+                        </button>
+                        </div>
+                    </div>
+                    
+                    <input type="hidden" id="cedulaActora" name="cedulaActora">
+
+                    <div class="mb-3">
+                        <label class="form-label">Parte Demandante</label>
+                        <div class="d-flex gap-2">
+                            <input type="text" id="parteDemandante" name="parteDemandante" class="form-control form-control-dark">
+                            <button type="button"
+                                class="btn btn-primary btn-cliente"
+                                data-bs-toggle="modal"
+                                data-bs-target="#ModalCliente"
+                                data-tipo="DEMANDANTE"
+                                disabled
+                                id="btnDemandante">
+                            Consultar
+                        </button>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="cedulaDemandada" name="cedulaDemandada">
+
+                    <div class="mb-3">
+                        <label for="materia" class="form-label">Matería</label>
+                        <select name="materia" id="materia" class="form-select form-select-dark" required>
+                            <option value="">Seleccione un tipo de Materia</option>
+                            ';
+                            if(!empty($materia))
+                            {
+                                foreach($materia as $opcion)
+                                {
+                                    echo '<option value="' . $opcion['idMateriaLegal'] . '">' . htmlspecialchars($opcion['nombreMateria']) . '</option>';
+                                }
+                            }
+                            else
+                            {
+                                echo"<option value=''>No hay materias por mostrar</option>";
+                            }
+                        echo
+                        '
+                        </select>
                     </div>
 
                     <div class="mb-3">
-                        <label for="correoElectronico" class="form-label">Correo Electrónico</label>
-                        <input type="email" class="form-control form-control-dark" id="correoElectronico" name="correoElectronico"
-                            placeholder="correo@ejemplo.com" required>
+                        <label for="tipoCaso" class="form-label">Tipo de Caso</label>
+                        <input type="text" class="form-control form-control-dark" id="tipoCaso" name="tipoCaso"
+                            placeholder="Divorcio" required>
                     </div>
 
                     <div class="mb-3">
-                        <label for="telefono" class="form-label">Teléfono</label>
-                        <input type="number" class="form-control form-control-dark" id="telefono" name="telefono"
-                            placeholder="8888-8888" onkeyup="soloNumeros(this);" required>
+                        <label for="circuito" class="form-label">Circuito</label>
+
+                        <div class="d-flex gap-2">
+                            <select name="circuito" id="circuito" class="form-select form-select-dark" required>
+                                <option value="">Seleccione un circuito</option>';
+                                if (!empty($circuito)) 
+                                {
+                                    foreach ($circuito as $opcion) 
+                                    {
+                                        echo '<option value="' . $opcion['idCircuito'] . '">' .
+                                            htmlspecialchars($opcion['nombreCircuito']) .
+                                            '</option>';
+                                    }
+                                } else 
+                                {
+                                    echo "<option value=''>No hay circuitos por mostrar</option>";
+                                }
+                            echo'
+                            </select>
+
+                            <button  class="btn btn-primary px-5" data-bs-toggle="modal" data-bs-target="#ModalCantones">
+                                Consultar
+                            </button>
+                        </div>
+                    </div>
+     
+                    <div class="mb-3">
+                        <label for="ubicacionExpediente" class="form-label">Ubicación del Expediente</label>
+                        <input type="text" class="form-control form-control-dark" id="ubicacionExpediente" name="ubicacionExpediente"
+                            placeholder="D2" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="estado" class="form-label">Estado del Caso</label>
+                        <select name="estado" id="estado" class="form-select form-select-dark" required>
+                            <option value="">Seleccione un tipo de Estado</option>
+                            ';
+                            if(!empty($estado))
+                            {
+                                foreach($estado as $opcion)
+                                {
+                                    echo '<option value="' . $opcion['idEstado'] . '">' . htmlspecialchars($opcion['nombreEstado']) . '</option>';
+                                }
+                            }
+                            else
+                            {
+                                echo"<option value=''>No hay estados por mostrar</option>";
+                            }
+                        echo
+                        '
+                        </select>
                     </div>
 
                     <div class="row mt-4">
@@ -282,8 +411,8 @@
                             <a href="ListadoClientes.php" class="btn btn-secondary">
                                 <i class="fa-solid fa-times me-1"></i> Cancelar
                             </a>
-                            <button type="submit" class="btn btn-primary" name="btnRegistrarCliente" id="btnRegistrarCliente">
-                                <i class="fa-solid fa-save me-1"></i> Guardar Cliente
+                            <button type="submit" class="btn btn-primary" name="btnRegistrarCaso" id="btnRegistrarCaso">
+                                <i class="fa-solid fa-save me-1"></i> Guardar Caso
                             </button>
                         </div>
                     </div>
@@ -296,41 +425,75 @@
     ?>
 
     <div class="modal fade" id="ModalCantones" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="max-width: 1100px;">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Listado de Cantones</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <table class="table mb-0 text-center" id="tbCantones" name="tbCantones">
-                            <thead>
+        <div class="modal-dialog" style="max-width: 1100px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Listado de Cantones</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+            <div class="modal-body">
+                <table class="table mb-0 text-center" id="tbCantones" name="tbCantones">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-center align-middle">Circuito</th>
+                            <th scope="col" class="text-center align-middle">Cantón</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($cantones as $canton)
+                        {
+                            echo '
                                 <tr>
-                                    <th scope="col" class="text-center align-middle">Circuito</th>
-                                    <th scope="col" class="text-center align-middle">Cantón</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                    <?php
-                    foreach ($cantones as $canton)
-                    {
-                        echo '
-                            <tr>
-                                <td class="text-center align-middle"><strong>' . $canton['nombreCircuito'] . '</strong></td>
-                                <td class="text-center align-middle"><strong>' . $canton['nombreCanton'] . '</strong></td>
-                            </tr>';
-                    }
-                    ?>
+                                    <td class="text-center align-middle"><strong>' . $canton['nombreCircuito'] . '</strong></td>
+                                    <td class="text-center align-middle"><strong>' . $canton['nombreCanton'] . '</strong></td>
+                                </tr>';
+                        }
+                        ?>
                     </tbody>
                 </table>
+            </div>
         </div>
-        </div>
-    </div>
     </div>
 
     <?php
     Cerrar()
     ?>
+
+    <div class="modal fade" id="ModalCliente" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Buscar Cliente</h5>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                <div class="d-flex gap-2">
+                    <input type="text" id="cedulaBuscar"
+                        class="form-control mb-0"
+                        placeholder="Ingrese cédula" onkeyup="soloNumeros(this);">
+
+                    <button class="btn btn-primary" onclick="buscarCedula()">
+                        Consultar
+                    </button>
+                </div>            
+                    <p class="mt-3">
+                        <strong>Cliente:</strong><span id="resultadoCliente"></span>
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success" onclick="seleccionarCliente()">
+                        Seleccionar Cliente
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <?php
     VerJs()

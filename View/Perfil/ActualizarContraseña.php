@@ -38,7 +38,6 @@
                             echo '<div class="alert alert-success alert-dismissible">' . $_POST["MensajeBueno"] . '</div>';
                         }
                     ?>
-                    <input type="hidden" id="idCliente" name="idCliente" value="<?php echo htmlspecialchars($cliente['idCliente']); ?>">
 
                     <div class="mb-3">
                         <label for="contrasennaActual" class="form-label">Contraseña Actual</label>
