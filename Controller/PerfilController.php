@@ -40,7 +40,7 @@
         {
             $imagen = '../images/' . $_FILES["imagen"]["name"];
             $origen = $_FILES["imagen"]["tmp_name"];
-            $destino = $_SERVER["DOCUMENT_ROOT"] . '/Gesti-ndeCitas-BuffeteLegal/View/images/' . $_FILES["imagen"]["name"];
+            $destino = $_SERVER["DOCUMENT_ROOT"] . '/JurisTime/View/images/' . $_FILES["imagen"]["name"];
             copy($origen,$destino);
         }  
 

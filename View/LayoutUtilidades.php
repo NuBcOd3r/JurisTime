@@ -64,12 +64,27 @@
                     </div>
                     <hr>
                     <ul class="nav nav-pills flex-column mb-auto">
+                    ';
+                    if($nombreRol == 'Administrador')
+                    {
+                        echo'
                         <li>
                             <a href="../Administrativo/Dashboard.php" class="nav-link text-white">
                                 <i class="fa-solid fa-chart-line me-2"></i> 
                                 <span class="menu-text">Dashboard</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="../Administrativo/GestionUsuarios.php" class="nav-link text-white">
+                                <i class="fa-solid fa-users me-2"></i> 
+                                <span class="menu-text">Gestión de Usuarios</span>
+                            </a>
+                        </li>
+                        ';
+                    }
+                    elseif($nombreRol == 'Abogado' || $nombreRol == 'Secretaria')
+                    {
+                    echo'
                         <li>
                             <a href="../Clientes/ListadoClientes.php" class="nav-link text-white">
                                 <i class="fa-solid fa-users me-2"></i>
@@ -87,7 +102,10 @@
                                 <i class="fa-solid fa-calendar me-2"></i>
                                 <span class="menu-text">Calendario</span>
                             </a>
-                        </li>   
+                        </li>
+                        ';
+                    }
+                    echo'
                     </ul>
                 </div>
         ';

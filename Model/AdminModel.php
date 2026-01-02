@@ -1,30 +1,13 @@
 <?php
     include_once $_SERVER['DOCUMENT_ROOT'] . '/JurisTime/Model/ConexionModel.php';
-    
-    function AgregarMateriaModel($nombreMateria)
-    {
-        try
-        {
-            $context = OpenConnection();
-            $sentencia = "CALL RegistrarMateria('$nombreMateria')";
-            $resultado = $context -> query($sentencia);
-            CloseConnection($context);
-            return $resultado;
-        }
-        catch(Exception $error)
-        {
-            SaveError($error);
-            return false;
-        }
-    }
 
-    function ConsultarMateriasModel()
+    function ConsultarUsuariosModel()
     {
         try
         {
             $context = OpenConnection();
 
-            $sentencia = "CALL ConsultarMaterias()";
+            $sentencia = "CALL ConsultarUsuarios()";
             $resultado = $context -> query($sentencia);
 
             $datos = [];
@@ -44,20 +27,63 @@
         }
     }
 
-    function ActualizarMateriaModel($idMateria, $nombreMateria)
+    function EliminarUsuarioModel($idUsuario)
     {
         try
         {
             $context = OpenConnection();
-            $sentencia = "CALL ActualizarMateria('$idMateria', '$nombreMateria')";
+            $sentencia = "Call EliminarUsuario('$idUsuario')";
             $resultado = $context -> query($sentencia);
             CloseConnection($context);
             return $resultado;
+
+        }catch(Exception $error)
+        {
+            SaveError($error);
+            return null;
+        }
+    }
+
+    function ConsultarUsuariosEliminadosModel()
+    {
+        try
+        {
+            $context = OpenConnection();
+
+            $sentencia = "CALL ConsultarUsuariosEliminados()";
+            $resultado = $context -> query($sentencia);
+
+            $datos = [];
+            while ($row = $resultado->fetch_assoc()) {
+                $datos[] = $row;
+            }
+
+            $resultado->free();
+            CloseConnection($context);
+
+            return $datos;
         }
         catch(Exception $error)
         {
             SaveError($error);
-            return false;
+            return null;
+        }
+    }
+
+    function ActivarUsuarioModel($idUsuario)
+    {
+        try
+        {
+            $context = OpenConnection();
+            $sentencia = "Call ActivarUsuario('$idUsuario')";
+            $resultado = $context -> query($sentencia);
+            CloseConnection($context);
+            return $resultado;
+
+        }catch(Exception $error)
+        {
+            SaveError($error);
+            return null;
         }
     }
 ?>
